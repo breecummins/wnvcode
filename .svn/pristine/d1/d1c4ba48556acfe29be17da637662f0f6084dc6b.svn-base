@@ -1,0 +1,97 @@
+% Template for PLoS
+% Version 1.0 January 2009
+%
+% To compile to pdf, run:
+% latex plos.template
+% bibtex plos.template
+% latex plos.template
+% latex plos.template
+% dvipdf plos.template
+
+\documentclass[10pt]{article}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{graphicx,multirow}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+\usepackage{color}
+
+% Use doublespacing - comment out for single spacing
+%\usepackage{setspace}
+%\doublespacing
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+
+% Use the PLoS provided bibtex style
+\bibliographystyle{plos2009}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+%% ** EDIT HERE **
+
+
+%% ** EDIT HERE **
+%% PLEASE INCLUDE ALL MACROS BELOW
+% Comments for making sure we touch all the bases for a good paper
+\newif\ifcommentsw
+\commentswtrue
+\newcommand{\comment}[1]{\ifcommentsw  $\blacktriangleright$\ \textbf{#1}\ $\blacktriangleleft$ \fi}
+%\commentswfalse   % remove the % to remove informational comments
+
+
+% Notes on the paper for communicating with coauthors
+\newif\ifnotesw
+\noteswtrue
+\newcommand{\notes}[1]{\ifnotesw  $\bullet$\ \textit{ \textbf{#1}}\ $\bullet$ \fi}
+%\noteswfalse   % remove the % to remove notes to coauthors
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\cq{{\textit{Culex quinquefasciatus}}}
+
+%% END MACROS SECTION
+
+\begin{document}
+
+Instead of performing a simple linear regression to fit our simulation results for decreasing host density, we may instead use measurements of plume shape to try and predict mosquito performance. We expect that the shape of the plume and the host arrangement are the primary causes of mosquito success in host finding. If we are able find a good fit 
+to our simulation data using only these characteristics, then we will take that as circumstantial evidence that our expectation is correct. 
+
+Because the plumes are straight, we can estimate their length and width over time and over different host arrangements with the same density. The edge of the plume is the contour line where $C = C_0$, the threshold CO$_2$ level. Since we have a record of the odor plume over time, we may estimate the average maximum width, $w$, and average maximum length, $l$, of the plume over time for a given host density (see Fig.~\ref{fig:denschematic}A).
+
+Consider first upwind and downwind plume finding behaviors. For simplicity, we neglect any crosswind motion of the mosquitoes so that only those  that are originally lined up with the plume will find a host. In other words, the predicted proportion of mosquitoes that find a host is the width of the plume over the length of the domain. However, this would underestimate the number of mosquitoes that find a host due to the critical radius $r_c$ around each host. When a mosquito is within $r_c$ of a host, a contact is recorded and the mosquito is removed from the simulation. This effectively widens the plume, but only adjacent to host locations and not throughout the length of the plume (see the schematic in Fig.~\ref{fig:denschematic}A). This means that we cannot expect to see the full benefit of widening the plume by $2r_c$, one critical radius on either side. Instead, we find that adding a fraction of $r_c$ to either side of the plume makes a good fit to the results.
+The open symbols in Fig.~\ref{fig:denschematic}B show estimates for downwind plume finding behavior (triangles) and upwind (circles) using  $P \approx (w+r_c)/L$ and $P \approx (w+r_c/2)/L$, respectively.  The open markers are a remarkably good fit to the average simulation data shown in the closed markers.
+
+
+During crosswind plume finding behavior, the mosquitoes slowly drift downwind while actively flying back and forth, so mosquitoes farther away from the plume have a chance of intercepting it. To account for this, we add a term to the downwind estimate that depends on the plume length ($l$) and the average crosswind flight length ($r_f$).  Roughly speaking, a mosquito in crosswind plume finding behavior may encounter the plume by either drifting downwind into the width of the plume, or by entering the region next to the plume within a distance of $r_f$. Therefore, we use the estimate $P \approx (w+r_c)/L + 2(l/L)(r_f/L)$. This is a good match to our mean results (open stars, Fig.~\ref{fig:denschematic}B).
+
+Given these results, we conclude that host area and plume shape have the primary effect on mosquito host-finding success. However, in general it is difficult to measure odor plume characteristics in the field. For this reason, the linear regression fits in the paper using only host patch area are more desirable for estimating the effects of the odor plume on mosquito host-finding success.
+
+
+
+\end{document}

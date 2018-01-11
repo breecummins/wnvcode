@@ -1,0 +1,98 @@
+\documentclass[10pt]{article}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{graphicx,multirow}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+\usepackage{color}
+
+% Use doublespacing - comment out for single spacing
+%\usepackage{setspace}
+%\doublespacing
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+
+% Use the PLoS provided bibtex style
+\bibliographystyle{plos2009}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+%% ** EDIT HERE **
+
+
+%% ** EDIT HERE **
+%% PLEASE INCLUDE ALL MACROS BELOW
+% Comments for making sure we touch all the bases for a good paper
+\newif\ifcommentsw
+\commentswtrue
+\newcommand{\comment}[1]{\ifcommentsw  $\blacktriangleright$\ \textbf{#1}\ $\blacktriangleleft$ \fi}
+%\commentswfalse   % remove the % to remove informational comments
+
+
+% Notes on the paper for communicating with coauthors
+\newif\ifnotesw
+\noteswtrue
+\newcommand{\notes}[1]{\ifnotesw  $\bullet$\ \textit{ \textbf{#1}}\ $\bullet$ \fi}
+%\noteswfalse   % remove the % to remove notes to coauthors
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\cq{{\emph{Culex quinquefasciatus}}}
+
+%% END MACROS SECTION
+
+\begin{document}
+	
+\begin{table}[!ht]
+\caption{
+{\bf Most sensitive local variation.} This table lists the highest sensitivity indices that we found over all ranging behaviors, input parameters, and output variables for the test problem described in the text. The second column has the name of the output variable being measured and its value at the unvaried parameter set given in  Table~\ref{tab:finalparams}. Input parameters that caused the highest sensitivity indices are in column three. $P$ is proportion of mosquitoes that found a host and $T_{avg}$ is average number of navigation decisions a mosquito makes before finding a host. The fourth and fifth columns are the sensitivity index and its error (see the text for details of calculation). The sixth column translates $SI$ into a percentage change in the output variable for a 10\% change in the input variable. If the sixth column is small compared to 10\%, then the measured output \textit{is not sensitive} to small variations in the input parameter. All combinations of ranging behavior, input parameter, and output variable not given in this table have sixth column values less than 3.0\%. $T_{avg}$ exhibits the highest sensitivity and has high relative error in the $SI$ estimate. $P$ is most sensitive during crosswind ranging behavior in response to changes in the maximum flying speed of the mosquitoes, $S_{max}$. Variations in $S_{max}$ also cause sensitive responses in the average time to a host in upwind and downwind ranging behaviors, along with host radius, host CO$_2$ emission rate, and mosquito sensing threshold for CO$_2$. Downwind ranging behavior is sensitive to the largest number of parameters in this test problem, while upwind behavior has the highest single sensitivity (to $S_{max}$).}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			\multirow{2}{*}{Ranging behavior} & \multirow{2}{*}{output (baseline value)}& \multirow{2}{*}{input} & \multirow{2}{*}{$SI$} & \multirow{2}{*}{Error} & \% output change for \\
+			&&&&& 10\% input change\\
+			\hline
+			\multirow{2}{*}{upwind} & \multirow{2}{*}{$T_{avg}$ (116)} & $S_{max}$  &  -210.7  &   36.64 & -18.1\% \\
+										& 						  & 	$\hat{J_0}$&    35.25  &   19.29 & 3.0\% \\
+			\hline
+			\multirow{5}{*}{downwind} & \multirow{3}{*}{$T_{avg}$ (46)} & $S_{max}$  & -29.2867   &  27.7440  & -6.4\%\\
+										&								& $r_c$		&  -46.7404  &  37.4326  & -10.3\%\\						
+										& 						  & 	$C_0$		&  -28.7421    &  30.6952 & -6.3\% \\
+										\cline{2-6}
+										 & \multirow{2}{*}{$P$ (0.20)}	& $r_c$ & 0.0642 & 0.0076 & 3.2\%\\
+										& 						  & 	$C_0$& -0.0602   & 0.0239 & -3.0\% \\
+			\hline
+				\multirow{2}{*}{crosswind} & \multirow{2}{*}{$P$ (0.36)}	& \multirow{2}{*}{$S_{max}$} & \multirow{2}{*}{0.2604} & \multirow{2}{*}{0.0952} & \multirow{2}{*}{7.3\%}\\
+			&&&&&\\
+			\hline
+		\end{tabular}
+	\end{center}\label{tab:sensitivity}
+\end{table}
+
+\end{document}

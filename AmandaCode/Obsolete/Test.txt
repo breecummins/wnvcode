@@ -1,0 +1,19 @@
+Sx = [0.3 0.3 0.3 0.3 0.5 0.5 0.5 0.5 0.7 9.6];
+Sy = [3.9 4.1 4.3 4.5 3.9 4.1 4.3 4.5 4.2 4.2];
+plot(Sx,Sy,'dk','MarkerFaceColor','y','MarkerSize',7); axis equal, axis([0,10,0,5]); xlabel('(tens of feet)','FontSize',12); ylabel('(tens of feet)','FontSize',12); title('Figure 1','FontWeight','b','FontSize',14); hold on; rectangle('Position',[4.9,0,.2,0.1],'FaceColor','k'); hold off
+
+1
+    4.4564
+    4.0265
+    4.4932
+    3.7000
+    4.2105
+    4.7891
+    4.1290
+    4.1783
+    3.7233
+    4.2353
+    3.7468
+    3.5325
+avg =
+    4.1017

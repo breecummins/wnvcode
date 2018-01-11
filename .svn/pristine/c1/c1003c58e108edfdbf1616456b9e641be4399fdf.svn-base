@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage[top=1in,bottom=0.5in,left=0.75in,right=0.75in]{geometry}
+\usepackage{amsmath,amssymb,multirow}
+
+\begin{document}
+\section*{Chemotaxis Rules}
+
+Models of chemotaxis assume that organisms respond to either the spatial gradient, the temporal gradient, or the absolute amount of a chemical signal. Organisms respond to these signals by adjusting their heading, speed, or both to either approach or avoid the source of the chemical. We would like to know how different the results are when these varying assumptions are used to construct models of chemotaxis that control agent behavior in a simulation of mosquito host-seeking behavior. To do this, we examine the following test problem.
+
+An odorant point source of magnitude $1$ is located at $(0.4,0.3)$ in a box that is $1$ unit on a side. The source decays exponentially as $ C = e^{-40r^2}$, where $r$ is Euclidean distance from the source, but is constant in time. Two hundred mosquito agents are randomly distributed in the area $(0.75,0.85)$ by $(0.75,0.85)$ at time $t=0$. At every time step, the mosquitoes make a decision about where to go based on a pre-determined rule set from Table \ref{rulesets}. Entries in Table \ref{rulesets} that say ``Fixed'' mean that the agent's speed is fixed at $1$ regardless of sensory input. ``Random'' entries mean that the direction or speed is chosen randomly from a range -- $[0,2\pi)$ for the angular heading and $[S_{\mbox{min}},S_{\mbox{max}}]$ for the speed. The rest of the entries indicate the sensory method that the agents use to alter direction or speed. Note that rule set \#9 is diffusion. It is included for comparison purposes.
+
+\begin{table}[h]\label{rulesets}
+	\begin{centering}
+\begin{tabular}{|c|c|c|}
+	\hline
+	Rule Set &  Direction & Speed \\
+	\hline
+	 1 & Spatial Gradient & Spatial Gradient\\
+	 2 & Spatial Gradient & Fixed\\
+	 3 & Spatial Gradient & Random\\
+	 4 & Temporal Gradient & Absolute Concentration\\
+	 5 & Temporal Gradient & Temporal Gradient\\
+	 6 & Temporal Gradient & Fixed\\
+	 7 & Temporal Gradient & Random\\
+	 8 & Random & Absolute Concentration\\
+	 9 & Random & Fixed\\
+\hline                                                  
+\end{tabular}
+\caption{Rule sets for chemotactic motion.}
+\end{centering}
+\end{table}
+  
+When an organism begins to home in on a target, it may slow down to pinpoint the location of the source. An agent that has location $(x,y)$ at time $t$ and controls its speed uses the following model to pick how fast it moves: 
+\begin{equation}  \label{speed}
+s(\phi(x,y,t)) = S_{\mbox{max}} - \frac{|\phi(x,y,t)|}{\gamma}(S_{\mbox{max}} - S_{\mbox{min}}),
+\end{equation}
+where $\phi(x,y,t)$ is either the value of the spatial gradient, temporal gradient, or absolute concentration of the chemical as required. The parameters $S_{\mbox{max}}$ and $S_{\mbox{min}}$ are the maximum and minimum values of the speed, and $\gamma$ is the known or estimated maximum value of $\phi$ over time and space. For absolute concentration, $\gamma = \gamma_c$ is maximum value of the concentration on the grid ($\approx 1$), which is fixed for all time. For the spatial gradient, $\gamma = \gamma_g$ is the maximum magnitude of the  center-difference approximation to the gradient, also fixed over time. And for the temporal gradient, $\gamma = \gamma_t$ is estimated to be $\gamma_t = S\gamma_g dt$, where $S = S_{\mbox{max}}$ (unless the speed is fixed in which case $S = 1$) and $dt$ is the length of the time step. This is the maximum change in concentration that a mosquito will sense after flying at top speed for one time step. Agents that sense the temporal gradient are modeled as having a one time step memory that includes the chemical concentration at the previous time step and the direction that they took from that point.
+
+A similar method is used for calculating direction. For an agent with location $(x,y)$ at time $t$, the direction is calculated as follows:
+\begin{eqnarray*}
+p(\phi(x,y,t)) = \alpha_{\mbox{max}} - \frac{\lvert \phi(x,y,t) \rvert}{\gamma}(\alpha_{\mbox{max}}-\alpha_{\mbox{min}}) \\
+\theta = \theta_0 + p(\phi(x,y,t))\eta(x,y,t).
+\end{eqnarray*}
+$\phi(x,y,t))$ and $\gamma$ are the same as in \eqref{speed}. $\theta_0$ is a reference heading -- either the direction of the spatial gradient or the direction that the mosquito just flew in during the last time step. $p(\phi(x,y,t))$ defines a ``precision'' cone around the reference angle $\theta_0$ that models uncertainty in the sensory apparatus. $\alpha_{\mbox{max}}$ and $\alpha_{\mbox{min}}$ are the maximal and minimal widths of the cone (the width to either side of $\theta_0$). $\theta$ is the agent's new heading. $\eta(x,y,t)$ is a random number in $[-1,1]$ that picks out a particular angle within the precision cone.
+
+\end{document}

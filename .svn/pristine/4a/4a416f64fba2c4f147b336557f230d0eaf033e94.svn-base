@@ -1,0 +1,13 @@
+We want each chicken to occupy one square foot on average for the constant density runs. This is 0.0929 square meters.  So a square box containing N chickens should have a side length of sqrt(0.0929*N)/L0, where L0 is the characteristic length (currently 0.1).
+
+Previously, the chickens occupied about 39.7 square nondimensional units (about 4 times the current density), so in order to keep the characteristics of the odor plume the same, it was necessary to multiply the dimensional CO2 saturation by 4.  This is equivalent to dividing the source strength by 4.
+
+Predictions:
+If the density is held constant and the number of chickens in each of two groups is varied (keeping the total number constant), then Bree takes as a null hypothesis that:
+1) For upwind and downwind flight, the number of mosquitoes that find a host in a given group will be proportional to the length of the side of the square containing the group: d*l, where d is the original linear density of the mosquitoes and l is the box side length. This corresponds to the scenario where the mosquitoes have no odor cues and only find a chicken if they crash into it.
+2) For crosswind flight, the number will be (roughly) d*l + 2*(l/L)*c*d. The second term accounts for mosquitoes entering from the sides of the box. c is the average crosswind flight length in one direction, so c*d is the number of mosquitoes within one flight of the side of the box. The factor of 2 occurs because it happens on either side. L is the domain length. I am thinking of the ratio l/L as corresponding to a rough probability that a crosswind mosquito within range is at the correct side of its range to hit the box.
+
+In reality, we will see effects from the odor plume. Bree predicts that we will see (approximately) upwind and downwind as d*w, where w is the largest width of the plume, and crosswind will be d*w + 2*(p/L)*c*d, where p is the length of the plume. p/L corresponds to a rough probability that a crosswind mosquito within range of the plume manages to find out before being advected out of the domain.
+
+
+My predictions were all underestimates.  It occurs to me that I forgot about the host radius, which effectively widens the box length. So, revise l to be boxlength+2*hostradius, w to be plume width +2*hostradius, and c to be c+hostradius. Doing this gives me an overestimate, except it's nearly right in the crosswind case.

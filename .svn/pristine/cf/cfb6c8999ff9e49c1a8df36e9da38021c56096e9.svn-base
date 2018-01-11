@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=0.75in,bottom=0.75in,left=0.75in,right=0.75in]{geometry}
+\usepackage{amsmath,amssymb,multirow,graphicx,natbib}
+\usepackage{setspace}
+
+% Comments for making sure we touch all the bases for a good paper
+\newif\ifcommentsw
+\commentswtrue
+\newcommand{\comment}[1]{\ifcommentsw  $\blacktriangleright$\ \textbf{#1}\ $\blacktriangleleft$ \fi}
+%\commentswfalse   % remove the % to remove informational comments
+
+
+% Notes on the paper for communicating with coauthors
+\newif\ifnotesw
+\noteswtrue
+\newcommand{\notes}[1]{\ifnotesw  $\bullet$\ \textit{ \textbf{#1}}\ $\bullet$ \fi}
+%\noteswfalse   % remove the % to remove notes to coauthors
+
+\parskip=5pt
+\parindent=0pt
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\cq{{\emph{Culex quinquefasciatus}}}
+%\newcommand{\mycaption}[1]{\caption{{\footnotesize \textsc{#1}}}}
+%\usepackage[font={small,singlespacing}]{caption}
+\usepackage[font={small}]{caption}
+\newcommand{\mycaption}[1]{\caption{#1}}
+\linespread{1.1}
+
+
+\begin{document}
+	
+\begin{center}
+Response to referees' comments
+\end{center}
+
+Overall, this is a vast improvement and the revision is presented in a much clearer, accessible and informative manner. Furthermore, I am now convinced that this is very useful model which merits publication in a high quality journal such as PLoS Computational Biology. In addition to all the depth of understanding that can be obtained with the process-explicit stochastic simulations, the simplified models for dealing with patchiness are particularly interesting and broadly applicable. However, there remain some very serious technical issues which I feel must be addressed if the simulations of alternative host-seeking strategies are to be taken seriously in their own right. The manuscript also needs considerable shortening: while this is a detailed manuscript that deserves in-depth consideration, 17 pages of single-spaced 10 point font text seems excessive and unnecessary.
+
+\textbf{We were able to reduce the paper's length by removing repetition, increasing the succinctness of the wording, and removing a little content. However, we had to add additional text and a figure in order to address some of the reviewer's concerns. Overall, the text length has been reduced by two and a half pages, and many of the figure captions have been shortened as well.}
+
+\vspace{0.25in}
+
+MAJOR COMMENTS
+
+\begin{enumerate}
+		
+\item      The domain remains simply too small and this is distorting the results, most probably leading to inaccurate conclusions. As can be seen in figure 4, the plumes disappear off the edge of the domain so that their full lengths are not captured. The width of the plume that determines the success of upwind and downwind strategies is fully captured but the plume length, that underlies the advantage of cross-wind strategies, is limited by is only extended to the edge of the domain and is therefore substantially underestimated. In fact these plumes look like they will be comparable in length to those measured by Gillies \& Wilkes. My expectation is that when full-length plumes are captured within suitably large domains, the cross-wind strategy will be unambiguously superior.
+
+\textbf{We address this concern jointly with item 2 below.}
+
+\item Beyond simply capturing the full plume extent, expansion of the domain to kilometers rather than meters is required to accurately reflect the challenges faced by most mosquitoes whose larval habitats are not immediately beside their preferred hosts. I don't accept the argument that most mosquitoes fly only short distances and I have not seen any evidence that they have territories (Bottom of page 3). The situation described is certainly approximated in some scenarios, notably Aedes aegypti living in urban domestic compounds that are probably borne into an odor plume on most occasions. Urban malaria vectors and tree-hole breeders attacking birds are probably similar too but most mosquitoes must commute much longer distances between aquatic habitat and preferred host clusters. Even if the domain is expanded to capture the full plume extent, the way this model assesses the full process of plume-tracking but a variable and usually small fraction of the plume-finding process
+inevitably biases conclusions and these must be discussed unambiguously in the context of the full range of normal mosquito ecologies (See previous suggestions for references).
+
+\textbf{We added a prototype simulation in which the full length of a plume is captured on a larger length scale. In particular, 2000 mosquitoes of each plume finding behavior were distributed uniformly over a disk of radius 100 m centered over a plume that was initially 35 m long. The simulation was run for 1500 s, at which point the growing plume exceeded 100 m in length, but was fully captured -- it did not reach the edge of the simulation region. This simulation is not intended to be a rigorous study of the type we undertake in the smaller domain. We present it to illustrate the potential utility of the model to simulations on larger scales, and introduce it as part of a discussion of the limitations and future extensions of this work. }
+
+
+\item      I cannot evaluate the relevance of reference 12 without seeing a copy of the unpublished manuscript. Could the authors please provide?
+
+\textbf{The manuscript is now published and the updated reference is [7]:}
+ 
+\textbf{Foppa IM, Moore J, Caillouet Ka, Wesson DM (2011). Disproportionate mosquito feeding on aggregated hosts. Journal of medical entomology 48: 1210-3.}
+
+\item      A square domain with entry limited to a single side also inevitably introduces biases, particularly in relation to cross versus up/down wind strategies. I would recommend a circular domain of at least 100m radius that captures the full length of any plume and offers equidistant entry points, regardless of direction.
+
+\textbf{We performed an additional simulation that addresses this. See the answer to item 2 above.}
+
+\item If one wishes to keep the domain small enough to capture full plume ranges but no more, then the entry points for a given strategy should be sampled from a simulated distribution of plume-finding directions generated with simulations of that strategy.
+
+\textbf{We chose to simulate a larger domain with unbiased entry points as suggested in the previous comment.}
+
+\item     I strongly doubt that the uniform distribution of flight duration described in the last sentence of page 7 is accurate for plume finding in particular. Surely a more aggregated, scale-free distribution spanning several orders of magnitude that would capture typical Levy flight characteristics [1] is much more likely to be accurate. Again, this assumption seems to arise from a restriction of consideration to very small domains and an underrepresentation of just how large a space most mosquitoes must explore during the plume-finding phase.
+
+\textbf{We mentioned the work of Pasternak et al. (2009) who raises exactly these issues. In the large scale simulation, we use a Levy distribution for crosswind flight length, and cite Reynolds and Frye as the reviewer suggests.}
+
+\item      Perhaps I missed it (not difficult in a manuscript of this bulk) but I didn't find an explicit statement about whether mosquitoes are allowed to leave the domain, presumably permanently and unsuccessfully. This appears to be suggested by the unsuccessful cross-wind flight track depicted in figure 2. Assuming this is the case, then this should be stated plainly as one of the first set of bullet points on page 6. If this is not the case then this would grossly affect the outcomes by exaggerate contact rates and attenuating the advantages of the most truly effective search strategies.
+
+\textbf{Mosquitoes are allowed to leave the domain, as was clearly stated in bullet point four of the list the reviewer mentions, as well as in the caption of Figure 1. The statement is now at bullet point 2 to increase its visibility. Additionally, the crosswind mosquito in Fig 2 successfully located a host after leaving and re-entering the simulation region. The caption to Fig 2 has been shortened and reworded so that this is now stated clearly and explicitly. }
+
+\item      If one were to include mortality rates into these simulations, the search strategy choices become a matter of life and death for both the mosquito and the pathogens they carry, especially where host clusters are widely spaced and the cost of extensive plume-finding and failed plume tracking become large.
+
+\textbf{This is certainly true.  Mortality rates should be included in longer-time simulations but are not an important factor at the time scales presented here.  Demographic processes are mentioned as a future direction.}
+
+\item     Similarly, the final paragraph in the results section needs to be tempered. How would this play out in landscape-scale domains with extended plume-finding phases, multiple clusters and an inverse relationship between cluster size and cluster number for a given human population?
+
+\textbf{Old text:  
+This model is attractive in that it depends only on the relative size of the patch and it can be directly related to a contact rate useful in standard (nonspatial) epidemiology models. In the next section we discuss the relationship to contact rate and the derivation of the linear approximation. 
+\newline
+Revised text:
+In the Discussion, we present a first attempt to link this linear approximation from our agent-based model to a contact rate that has been used in standard (nonspatial) epidemiology models. 
+}
+
+\item     The authors have reasonably assumed a very fast diffusion coefficient to match CO2 because this is as good a place to start as any. However, most mosquitoes are specialists [2] with defined, narrow host preferences so the cues which initiate plume tracking are most probably much heavier, slower trace odors which may produce quite different plume characteristics.
+
+\textbf{It turns out the diffusion matters very little in comparison with the convection by the wind. See Vickers (2000) for a discussion of turbulent mixing vs molecular diffusion. Regardless of what changes (or not) in the odor plume, mosquito behavior will undoubtedly be affected by compound odors, and we list this as a future direction.}
+
+\item     The discussion does not address the above substantive limitations of the study in a satisfactory and clear way. This study should be published but the implications of these limitations needs to be openly highlighted: the existing conclusions may simply be wrong and should not be presented as they are, to be taken almost directly at face value. In that respect, the abstract in particular needs to be much more measured and balanced. For me, the real outcome of this exercise is not the conclusions directly obtained (which I take with a large pinch of salt) but rather the potential to address a whole range of crucial issues once this model is incorporated into more meaningful models that capture full mosquito feeding cycles and dispersal distances.
+
+\textbf{A section on limitations has been explicitly labeled in the discussion, where we have consolidated our caveats about the space and time scales rigorously analyzed in the paper. As mentioned in earlier comments, we also introduced a single simulation as a proof of concept that the model is capable of larger scale simulations than those that arose from the motivating experiments of Foppa et al. (2011). We also now give length and time scales in the abstract, which has been rewritten as follows:
+\\
+Mosquito host-seeking behavior and heterogeneity in host distribution are important factors
+in predicting the transmission dynamics of mosquito-borne infections such as dengue fever, malaria, chikungunya, and West Nile virus. 
+We develop and analyze a new mathematical model to describe the effect of spatial
+heterogeneity on the contact rate between mosquito vectors and hosts. The model includes odor 
+plumes generated by spatially distributed hosts, wind velocity,
+and mosquito behavior based on both the prevailing wind and the odor plume.
+On a spatial scale of meters and a time scale of minutes, we compare the effectiveness of different plume-finding and plume-tracking strategies that mosquitoes could use to locate a host. The results show that two different models of chemotaxis are capable of producing comparable results given appropriate parameter choices and that host finding is optimized by a strategy of flying across the wind until the odor plume is intercepted.  
+We also assess the impact of changing the level of host aggregation on mosquito host-finding success near the end of the host-seeking flight.
+When clusters of hosts are more tightly associated on smaller patches, the odor plume is narrower and the biting rate per host is decreased. For two host groups of unequal number but equal spatial density, the biting rate per host is lower in the group with more individuals, indicative of an attack abatement effect of host aggregation. 
+We discuss how this approach could assist parameter choices in compartmental models that do not explicitly model the spatial arrangement of individuals and how the model could address larger spatial scales and other probability models for mosquito behavior, such as L\'{e}vy distributions.
+}
+
+
+\item    The observation that contact rate per capita decreases with cluster size is inconsistent with field observations of increasing numbers of human occupants of houses resulting in increasing per capita exposure to malaria vector mosquitoes [3, 4] and this needs to be mentioned.
+
+\textbf{We added the following text to the Discussion: Additional factors should be included in the model in order to capture subtle differences between mosquito species, lighting effects, and other elements not included in the current work.  Hosts tend to attract mosquitoes in unequal ways [41]. Differential attractiveness, the emission of different levels of CO$_2$ by different hosts as well as multiple odor cues can also be introduced into the model to study situations like those presented in [42], where mosquitoes of many species finding humans distributed in huts, or in [43], where mosquitoes were collected inside village houses in Tanzania. These studies report an approximate direct relationship between the number of inhabitants per house and the number of mosquitoes collected. Our model could be used to study which factors influence more strongly this relationship.}
+
+
+\vspace{0.25in}
+
+
+MINOR COMMENTS
+
+\item     The predicted advantages of cross-wind strategies, particularly in the context of much larger domains, seem very compatible with the conclusions of classic mark-release-recapture studies with African Anopheles indicating a modest influence of wind relative to host distribution [5].
+
+\textbf{We added the following text to the Discussion: The effectiveness of the crosswind strategy over periods of minutes is compatible with the conclusions of the mark-release-recapture studies of  Anopheles gambiae Giles in [34] where the dispersion of recaptured mosquitoes was related primarily to the distribution of human settlements (over time scales of days).}
+
+\item     The statement "This is a dilution effect." At the end of the third paragraph on page 15 should be extended to connect to important biological phenomena such as the attenuation of malaria transmission by population density [6-10] and the steep gradients of vector biting density that occur as one moves from the edge of human settlements to the centre [11-15]".
+
+\textbf{The statement now reads: This is a dilution effect, also seen in the reduction of groups at risk for malaria resulting from urbanization [36]. 
+\newline
+We also added in Limitations subsection: In larger domains, it would be interesting to include the effect of mosquito breeding sites and how their locations affect the biting rate of hosts near them in comparison to hosts living farther away from the breeding sites. Significant differences in the biting rates in spatial relation to breeding sites have been reported for malaria in [40].  }
+
+\item    Another interesting phenomenon this model could be applied to is the effect of host size upon plume extent and exposure[16], which has an overwhelming importance in malaria epidemiology[17].
+
+\textbf{The discussion section includes the statement:
+Hosts tend to attract mosquitoes in unequal ways [41]. Differential attractiveness, the emission of different levels of CO$_2$ by different hosts as well as multiple odor cues can also be introduced into the model.
+}
+
+\item     The introductory literature review is now excellent but would benefit from inclusion of additional key references [18-22].
+
+\textbf{We included some of the works suggested.}
+
+\item     It is difficult to review a paper with the figure panels provided separately-please present in integrated single images that look exactly as they would be published.
+
+\textbf{This is a submission requirement of PLoS Computational Biology, not our choice.}
+
+\item     Please define terms like "CO2 simulation region" (4th line page 16) and "contact rate" (Bottom of page 15) more explicitly and clearly. I had to guess my way through these sections/
+
+\textbf{The term contact rate is the number of contacts between mosquitoes and hosts per time period, now clearly defined in the methods section immediately after we define the term contact. The CO2 simulation region is the computational domain where the odor plume is computed. This is defined in the methods section where we discuss the odor plume computation.}
+
+\item     The manuscript remains unnecessarily bulky and could be cut down by at least 20\%. A lot of the methods, results and discussion sections are repetitive and redundant. All the key take home points are summed up and revisited in all three sections. Remove references to results (Figures and tables) in the methods section as these appear in an unordered fashion that lacks flow in this section. Also, avoid simply repeating the major results in the discussion section and focus on additional insights and potential applications that arise when one considers this piece in the context of the broader literature. Also, the point that heterogeneity is important so this model is useful is repeated more often than is required. The revised literature review is a vast improvement and very convincing in this regard so further repetition is not required.
+
+\textbf{We succinctly reworded parts of the methods, results, and discussion to cut down on repetition and decrease overall length. References to Figure 4 were removed from the Methods section since they appeared out of order. The other figures and tables are mentioned in order. We removed a lot of the repetition of the results in the discussion, although a little is necessary to provide a connection to the work of others. We removed several sentences reiterating the importance of spatial heterogeneity.}
+
+\item     There should be a hyphen in "plume-tracking" and "plume-finding" throughout.
+
+\textbf{We changed all instances in which the phrases were used as adjectives; e.g. ``plume-finding behavior'' or ``plume-tracking process.'' Everywhere else, plume finding and plume tracking are used as nouns and left unhyphenated.}
+
+\item    The statement about "When hosts are more tightly clustered,?.." in the abstract is a bit vague and open to misinterpretation regarding cluster size rather than tightness per se. How about "When clusters of hosts are more tightly associated on smaller patches"?
+
+\textbf{The wording has been altered as suggested.}
+
+\item    Use of the first person ("Our", "we") may be a little excessive.
+
+\textbf{We removed many instances of ``we'' and ``our.''}
+
+\end{enumerate}
+
+REFERENCES
+1.      Reynolds AM, Frye MA. Free-flight odor tracking in drosophila is consistent with an optimal intermittent scale-free search. PLoS One. 2007;2:e354. \\ 
+2.      Lyimo IN, Ferguson HM. Ecological and evolutionary determinants of host species choice in mosquito vectors. Trends Parasitol. 2009;25:189-96. \\ 
+3.      Haddow AJ. The mosquito fauna and climate of native huts at Kisumu, Kenya. Bull Entomol Res. 1942;33:91-142. \\ 
+4.      Killeen GF, Tami A, Kihonda J, Okumu FO, Kotas ME, Grundmann H, et al. Cost-sharing strategies combining targeted public subsidies with private-sector delivery achieve high bednet coverage and reduced malaria transmission in Kilombero Valley, southern Tanzania. BMC Infect Dis. 2007;7:121. Epub 2007/10/27. \\ 
+5.      Gillies MT. Studies on the dispersion and survival of Anopheles gambiae in East Africa, by means of marking and release experiments. Bull Entomol Res. 1961;52:99-127. \\
+6.      Hay SI, Guerra CA, Tatem AJ, Atkinson PM, Snow RW. Urbanization, malaria transmission and disease burden in Africa. Nat Rev Microbiol. 2005;3:81-90. \\
+7.      Keiser J, Utzinger J, Castro MC, Smith TA, Tanner M, Singer BH. Urbanization in sub-Saharan Africa and implications for malaria control. Am J Trop Med Hyg. 2004;71 (Supplement 2):118-27. \\
+8.      Killeen GF, McKenzie FE, Foy BD, Schieffelin C, Billingsley PF, Beier JC. A simplified model for predicting malaria entomologic inoculation rates based on entomologic and parasitologic parameters relevant to control. Am J Trop Med Hyg. 2000;62:535-44. \\
+9.      Robert V, MacIntyre K, Keating J, Trape JF, Duchemin JB, Warren M, et al. Malaria transmission in urban sub-Saharan Africa. Am J Trop Med Hyg. 2003;68:169-76. \\
+10.     Smith DL, McKenzie FE. Statics and dynamics of malaria infection in Anopheles mosquitoes. Malar J. 2004;3:13. \\
+11.     Lindsay SW, Armstrong Schellenberg JRM, Zeiler HA, Daly RJ, Salum FM, Wilkins HA. Exposure of Gambian children to Anopheles gambiae vectors in an irrigated rice production area. Med Vet Entomol. 1995;9:50-8. \\
+12.     Ribeiro JMC, Seulu F, Abose T, Kidane G, Teklehaimanot A. Temporal and spatial distribution of anopheline mosquitoes in an Ethiopian village: implications for malaria control strategies. Bull World Health Organ. 1996;74:299-305. \\
+13.     Smith T, Charlwood JD, Takken W, Tanner M, Spiegelhalter DJ. Mapping densities of malaria vectors within a single village. Acta Tropica. 1995;59:1-18. \\
+14.     Thompson R, Begtrup K, Cuamba N, Dgedge M, Mendis C, Gamage-Mendis A, et al. The Matola malaria project: A temporal and spatial study of malaria transmission and disease in a suburban area of Maputo, Mozambique. Am J Trop Med Hyg. 1997;57:550-9. \\
+15.     Trape JF, Lefebvre-Zante E, Legros F, G. N, Bouganali H, Druilhe P, et al. Vector density gradients and the epidemiology of urban malaria in Dakar, Senegal. Am J Trop Med Hyg. 1992;47:181-9. \\
+16.     Port GR, Boreham PFL. The relationship of host size to feeding by mosquitoes of the Anopheles gambiae Giles complex (Diptera: Culicidae). Bull Entomol Res. 1980;70:133-44. \\
+17.     Smith TA, Maire N, Dietz K, Killeen GF, Vounatsou P, Molineaux L, et al. Relationship between entomologic inoculation rate and the force of infection for Plasmodium falciparum malaria. Am J Trop Med Hyg. 2006;75 (Supplement 2):11-8. \\
+18.     Gu W, Novak RJ. Predicting the impact of insecticide-treated bednets on malaria transmission: the devil is in the detail. Malar J. 2009;8:256. \\
+19.     Gu W, Regens JL, Beier JC, Novak RJ. Source reduction of mosquito larval habitats has unexpected consequences on malaria transmission. Proc Natl Acad Sci USA. 2006;103:17560-3. \\
+20.     Smith DL, Dushoff J, McKenzie FE. The risk of a mosquito-borne infection in a heterogeneous environment. PLoS Biol. 2004;2:e368. \\
+21.     Smith DL, Dushoff J, Snow RW, Hay SI. The entomological inoculation rate and Plasmodium falciparum infection in African children. Nature. 2005;438:492-5. \\
+22.     Killeen GF, Knols BG, Gu W. Taking malaria transmission out of the bottle: implications of mosquito dispersal for vector-control interventions. Lancet Infect Dis. 2003;3:297-303.  \\
+
+\end{document}

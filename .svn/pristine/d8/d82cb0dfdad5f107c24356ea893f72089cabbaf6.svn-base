@@ -1,0 +1,56 @@
+We assume that it is the active host-seeking period for Culex quinquefasciatus (nighttime) and all of the modeled mosquitoes are mated females needing a blood meal. The females respond to some threshold level of CO2, c, and can sense changes in concentration of 50-100 ppm (Gillies 1980; Clements Biology of Mosquitoes Vol. 2 pg 39; Grant 1995). Reasonable values for c may lie in the range 1000-3000 ppm (reviewed in Gibson and Torr 1999; Gillies 1980) or as low as 500 ppm (Dekker et al. 2005), assuming an atmospheric level of CO2 300-400 ppm. Mosquitoes move on the order of 1 m/s (see references in Bidlingmayer 1994; 33-34 cm/s in Dekker et al. 2005 after correcting for wind speed). The environmental conditions may include slow ambient wind (0 m/s <= wind <= 1 m/s), possibly varying in direction. The mosquitoes will act differently in the presence of wind > alpha m/s, where alpha is an appropriately chosen minimal threshold, than they do when the air is mostly still. I haven't found a good value for alpha yet. The maximal value of air flow may be as high as 2.5 m/s, although reduced mosquito flight may be seen in windspeeds as 1.0 m/s (Clements vol 2 pg 284-5). Mosquito ground speed shows high variance: 0.03 - 0.37 m/s (Dekker et al 2005; Clements Vol 2) depending on wind conditions and probably other factors (same species).
+
+Calculations for release rate of CO2 concentration per chicken:
+
+If we assume a 2 kg chicken, then we have an output of 18 - 29 ml CO2/min per chicken. The total exhaled volume per unit time varies from 422 - 464 ml/min (Brackenbury), so we are looking at \Delta [CO2] from 2*(18/464)/min to 2*(29/422)/min, or 0.078 to 0.137 ml CO2/ml air per min. The factor of 2 occurs because incoming oxygen is replaced by outgoing CO2, resulting in a two-fold concentration change.  Now, this probably does not capture the full biological range, so let's add another approximately 20% of the mean to either end of the range:  0.058 - 0.157 units CO2/ units air per min. 
+
+Notice that this corresponds to 6-16% CO2. This sanity checks with 20% O2 in the atmosphere, although the upper end of the scale may be too efficient. It also sanity checks with human breath exhalations of 4% CO2, since mammalian respiration is supposed to be less efficient than bird respiration. 
+
+Lastly, we need to convert this into the time units of the program: multiply the desired source output, x in 0.058 - 0.157, by the time scale L/dm (length of the square/mosquito tracking speed), where dm is in length units per minute. That is, the source strength per unit time, U, is given by U = L*x/dm (or U=L*(x/60)/dm if dm is in units per second). Of course the dimensionless version will be U=1, with dimensionless C as C/U.
+
+REFERENCES:
+Brackenbury:
+Table 1. Respiratory characteristics of domestic fowl breathing air at rest (16-22 degrees Celcius).
+		\dot{V}, minute ventilation, ml/min		VT, tidal volume, ml		f, respiratory frequency, 1/min
+Air: 		443 +/- 21								33.9 +/- 1.0					13.1 +/- 0.6
+
+Clements Biology of Mosquitoes Vol 2 pg 437 states that total CO2 output is 9 - 12 ml/min per kg chicken body mass.
+Cooperband 2006 says total CO2 output is 14.3 ml/min for a 1 kg chicken.
+
+
+
+
+IN THE PRESENCE OF WIND:
+ 
+Before an odorant is sensed, the mosquito will assume one of the following three behaviors:
+1) The mosquito will take an irregular upwind flight. All flights that are oriented to the wind are presumably maintained using visual cues even in nocturnal species.
+REFERENCES: Gibson and Torr 1999 state that mosquitoes tend to fly upwind in wind tunnels even in clean air. This comment is not accompanied by a citation, is probably based on research in Aedes and Anopheles species, and may be due to wind tunnel design rather than to natural mosquito behavior. Gillies and Wilkes 1974 cite previous studies reporting that most mosquitoes appear to enter both baited and unbaited traps from the downwind side, possibly indicating that the mosquitoes engage in upwind searches in the absence of odor cues. A geometric argument shows that upwind and downwind flights may be optimal for intercepting odor plumes if the wind direction varies more than 30 degrees from the mean (Sabelis and Schippers 1984). The irregular flight pattern is mentioned in Davis 1996 in the CIBA Symposium book Olfaction in Mosquito-Host Interactions, and is said to be similar to that seen in tsetse flies. I believe the irregularity is mostly in regard to the timing and angle of turns from the upwind direction. Vision in nocturnal mosquitoes is discussed in Bidlingmayer 1994 in the Journal of American Mosquito Control Association and in Land et al. 1999. Optomotor anemotaxis (visually-mediated upwind flight) in Culex quinquefasciatus is discussed in Chapter 6 of Miriam Cooperband's dissertation (2005).
+
+2) The mosquito flies downwind in an irregular pattern. 
+REFERENCES: There is circumstantial evidence for downwind searches in Mansonia mosquito species presented in Gillies and Wilkes 1974, although their experimental set up may not rule out all other explanations. Also see Sabelis and Schippers 1984 for a geometric argument for optimality in highly variable wind direction as in 1).
+
+3) The mosquito flies back and forth cross-wise through the plume, with variability in the exact angle chosen. This pattern may be combined with upwind or downwind translation.
+REFERENCES: Geometric arguments support perfectly crosswind search as optimal when the wind direction varies less than 30 degrees from the mean (Sabelis and Schippers 1984), or when the odor plumes are very elongated (Dusenbery 1989). There is a little weak evidence for crosswind flight in Dekker et al. 2005: Aedes aegypti mosquitoes flew about 40-70 degrees into the wind when there was no stimulus present (green broken line in Figure 5A).
+
+In all three cases, after the mosquito senses a CO2 concentration above threshold, it will orient upwind and proceed in an irregular flight. There may be a slight increase in speed. If the mosquito loses the odor plume at any point (concentration < c for some amount of time, tau_1), then it will turn crosswind, either right or left, and proceed to loop around until it contacts the odor plume again. If it fails to locate the plume within a threshold amount of time, tau_2, then it will revert to its behavioral pattern pre-CO2. (In 2D, the mosquito should always reconnect with the plume unless it is very intermittent. The looping behavior is more interesting in 3D.)
+REFERENCES: Upwind flight in the presence of odorants is generally accepted; see Dekker et al. 2001 and Dekker et al. 2005 for experiments with Anopheles gambiae and Aedes aegypti. See also Cooperband 2005 and the citations therein. Dekker et al. 2005 shows some evidence for increased speed after sensing an interesting odor plume, with increases of about 10-30% in relative air speed. See Figures 5 and 6 in Dekker et al. 2005 for the crosswind turn and the looping behavior when the odorant is lost. 
+
+
+IN THE ABSENCE OF WIND:
+Let's assume that we are not going to model visual attraction to large objects.
+
+Before an odorant is detected, the mosquito moves around randomly.
+
+After detecting a CO2 concentration > c, the mosquito attempts to find the odor source by gradient ascent, possibly with a slightly increased speed. 
+
+Possibilities for the gradient ascent:
+After the initial detection, the mosquito keeps moving in the same direction it was headed in at the time of contact. As long as the concentration increases or stays the same to within 100 ppm, the mosquito moves in this direction with some noise in the exact angle chosen, leading to an irregular flight pattern. If a decrease of at least 100 ppm occurs, then the mosquito has to make a decision about which direction to go. It seems reasonable that the mosquito will either backtrack or make a sharp turn. I envision these as in the following:
+
+1) The mosquito will make an approximately 180 degree turn and backtrack about the same amount of distance (this will not in general take it exactly back to its previous location). It will then set off approximately in one of the orthogonal directions. If CO2 > c is detected, it resumes a straight line path. 
+
+2) The mosquito will make an approximate +/- 90 degree turn in one of the two orthogonal directions and travel some set distance. If CO2 > c is detected along this track, the mosquito resumes the straight line path. 
+
+If CO2 is not detected in either of the above cases, I have to make some guesses about the navigational memory of the mosquito. It could at this point reverse course or make another turn; it could turn parallel to its previous successful course and head backwards for some amount of time; or it could give up and start randomly searching again. I am leaning toward strategy 1) followed by the random search, but I have no data to indicate whether or not this is reasonable.
+
+
+

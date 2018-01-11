@@ -1,0 +1,452 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=0.75in,bottom=0.75in,left=0.75in,right=0.75in]{geometry}
+\usepackage{amsmath,amssymb,multirow,graphicx,natbib}
+\usepackage{setspace}
+
+% Comments for making sure we touch all the bases for a good paper
+\newif\ifcommentsw
+\commentswtrue
+\newcommand{\comment}[1]{\ifcommentsw  $\blacktriangleright$\ \textbf{#1}\ $\blacktriangleleft$ \fi}
+%\commentswfalse   % remove the % to remove informational comments
+
+
+% Notes on the paper for communicating with coauthors
+\newif\ifnotesw
+\noteswtrue
+\newcommand{\notes}[1]{\ifnotesw  $\bullet$\ \textit{ \textbf{#1}}\ $\bullet$ \fi}
+%\noteswfalse   % remove the % to remove notes to coauthors
+
+\parskip=5pt
+\parindent=0pt
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\cq{{\emph{Culex quinquefasciatus}}}
+%\newcommand{\mycaption}[1]{\caption{{\footnotesize \textsc{#1}}}}
+%\usepackage[font={small,singlespacing}]{caption}
+\usepackage[font={small}]{caption}
+\newcommand{\mycaption}[1]{\caption{#1}}
+\linespread{1.1}
+
+\title{A hybrid model of mosquito-host encounter rates}
+\author{
+\textbf{Ricardo Cortez}\\
+   \small{Mathematics Department}\\
+   \small{Tulane University}\\ \and
+\textbf{Bree Cummins}\\
+   \small{Mathematics Department}\\
+   \small{Tulane University}\\ \and
+\textbf{Ivo M. Foppa}\\
+   \small{Department of Epidemiology}\\
+   \small{Tulane University}\\ \and
+   \textbf{James M. Hyman}\\
+   \small{Mathematics Department}\\
+   \small{Tulane University}\\ \and
+\textbf{Justin Walbeck}\\
+   \small{Mathematics Department}\\
+   \small{Tulane University}\\
+}
+
+
+\begin{document}
+	
+\begin{center}
+Response to referees' comments
+\end{center}	
+
+%%%%%%%%%%%%%%%%%
+\begin{center}{\bf Referee \#1}\end{center}
+%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+\item{\em 
+This seems like an interesting paper, but was hard to read because the authors kept me guessing a bit about their intentions. The introduction should be improved: the authors should state clearly a point that they make in the discussion, that little is known about mosquito strategies, and that they are proposing a simulation framework that should help with experiment design, and also provides some preliminary insights into how search strategies work.
+}
+
+
+We have revised the introduction.  In particular, early on we state:
+
+Despite its important epidemiological implications, experimental data on the relationship between host aggregation and mosquito-host encounter rates is sparse, and thus, little is known definitively about mosquito strategies for finding hosts.
+The goal of this work is to propose a novel simulation framework that
+provides some preliminary insights into how host-seeking strategies used by mosquitoes perform.  In this way
+our model may offer guidance both to the planning of experimental
+studies and to the interpretation of experimental data.  This work represents a first component
+of  a larger model of disease transmission.
+
+% We develop, assess, and utilize a mathematical model
+% to simulate  both the odor plume in the presence of wind and the host-seeking behavior of mosquitoes in response to that odor plume. Mosquitoes are modeled as discrete {\em agents} that fly continuously in search of  discrete hosts (birds).
+% The flight direction and speed of individual mosquitoes is influenced by wind and odors
+% emitted by the hosts.
+% The wind is composed of a function for the large scale component plus
+% a stochastic component to represent small scale variations.
+
+
+
+\item{\em 
+The part about "ignoring heterogeneity" in transmission models may be overstated, it should at least be contextualized: it is well known (although not always taken into account) that mosquito biting behaviour is highly variable. It depends on age, gender, personal chemistry, personal behaviour, housing, micro-geography, etc; whether mosquito searching behaviour is a particularly big part of this equation is beyond the scope of this paper, and the authors should not imply otherwise.
+}
+
+
+We agree with the referee and modified the statement to read 
+``Including the heterogeneity of the hosts and mosquitoes in transmission models has the potential of providing new insights into how these diseases spread."
+
+\item{\em 
+$S_{max}$ in (5) should presumably be s.
+}
+
+We made the change.
+
+\item{\em 
+There is no need to separate (5) and (6); the authors should give (5) in terms of theta 
+(they don't seem to explain theta $_w$ anyway), and then explain how theta is calculated differently for the two cases.
+}
+
+We combined the two equations into one, but we kept the $\theta_c$ and $\theta_w$ notation, since one is for CO$_2$ and one is for wind. The equations in which $\theta_c$ and $\theta_w$ are defined are now numbered and referenced to draw attention.
+
+\item{\em 
+The test problem doesn't seem best described by "turning off" diffusion; it sounds like it is motivated by a diffusion process at equilibrium.
+}
+
+There were several issues with the use of the previous test problem, one of which is that it is a large departure from the main thrust of our paper and the other simulations. We changed the test problem to one that still allows us to make our major points, but avoids the problem of considering a stationary CO$_2$ distribution. 
+
+\item{\em 
+The Results section is hard to follow. There is a subsection titled "Model Simulations" that follows two other subsections full of model simulations.
+}
+
+We relabeled the sections to clarify. We moved the test problem assessing the mosquito rules and the section on sensitivity analysis into the Models section. The Results section is now solely composed of the simulations that were previously in ``Model Simulations''.
+
+\item{\em 
+The authors need to be more clear about the point of the "host-seeking rules" subsection. I guess they are trying to make the points that: seeking works (compared to not seeking); the two seeking methods work about the same. They should make it clear upfront that this subsection is about testing their model rather than inferring about biology, assuming that it is. I kind of think that the "gradient" seeking can be abandoned, or just mentioned very briefly. It seems unlikely that mosquitoes have perfect knowledge of gradients. If the authors can show that their "sampling" method (R$_c$) results in reasonable host-finding, they are done. The "gradient" method, with perfect knowledge, will presumably work a little to a lot better depending on other assumptions (and if things are properly matched), but there seems no reason to use it.
+}
+
+We separated the model assessment into its own section for clarity. 
+We wrote an introductory paragraph to this section to emphasize that it addresses the
+performance of the model in a test problem. We also emphasize (using a single new figure)
+that seeking rules outperform one type of random walk, and that with sufficient free parameters
+two different seeking methods can show very similar performance (i.e., the ``sampling'' and ``gradient'' methods). 
+
+We agree with the referee that mosquitoes are more 
+likely to use a ``sampling" method rather than a ``gradient" method to find hosts. We have kept a reduced 
+version of the `gradient' method because it is used in many chemotaxis models.  However, the remainder 
+of our paper now uses the `sampling' method.
+We have re-performed all the simulations in the Sensitivity Analysis and Results sections using it (see in particular Figures 5 and 6 and Tables 2 and 3). The referee will note that the differences between the model simulations using the ``gradient" and ``sampling'' methods are slight and our conclusions remain unchanged. 
+
+% The numbers for the sensitivity analysis (Table 2) changed because we changed the test problem in the sensitivity analysis section. This change was made for two reasons: 1) The parameter base values are more consistent with those used in the model simulations; and 2) the numbers in Table 2 can now be compared with the numbers for the straight plume in Table 4. We also now report the sensitivity of the average time taken to reach a host, which we previously did not include. We scale the sensitivity index differently to make it easier to describe. Overall, we still find that the proportion of mosquitoes that locate a host is generally robust to variations in inputs.
+
+\item{\em 
+The significance tests in this subsection are not appropriate. Any two methods that are not identical will produce significant KS differences if enough simulations are done. The point here should be that there are large differences between the seeking and the random approaches. This should be displayed in a clear graphical manner -- for example, showing how many mosquitoes find the host over time in different simulations, with confidence intervals around that.
+}
+
+This section has been rewritten with a different test problem and the KS statistics removed, because they obscure our major points which can be addressed much more simply. All the figures were removed from this section and replaced by a figure in the form suggested by the referee. %The section now reads as follows:
+
+%As a test problem to compare different host-seeking mechanisms, we used a grid of nine hosts spaced 1 ft (0.3 m) apart in the center of a square domain with area 100 m${^2}$ and imposed an incompressible velocity field that produces a meandering odor plume. See Eq.~\eqref{eqn:meander} for the equation governing the velocity field, and Fig.~\ref{fig:Meander}.B for an example of the type of odor plume produced in the presence of superposed random velocity fields. 
+
+%We examined upwind, downwind, and crosswind ranging behaviors, each in combination with the gradient and sampling methods for CO$_2$ sensing. The parameter values for the sampling method are given in Table~\ref{tab:finalparams}. For the gradient method, we used the parameters $\alpha_{min} = \pi/6$, $G_0 = 0.001$ (40 ppm/meter), and $G_{sat}=0.198$ (7900 ppm/meter). The last two parameters are analogous to $\Delta C_0$ and $\Delta C_{sat}$ in the sampling method. All other parameters remained the same between the methods. We also considered a random walk in which the mosquitoes entered the domain in a single line along the domain edge upwind of the hosts, but do not sense either CO$_2$ or wind and are not advected with the velocity field. The mosquitoes chose a direction randomly at every time step. The speed of the random walk was given by $S_{max}$, the same speed as the ranging behavior of the host-seeking mosquitoes. 
+
+%The proportion of mosquitoes that found a host ($P$) after 1500 navigation decisions is shown in Fig.~\ref{fig:rulecomp} for all the mosquito heuristics discussed above. The values shown in the bar graph are averages over 15 simulations in which the time series of random velocity fields is fixed, but the mosquito behavior stochastically varies. The thin error bars represent $\pm$2 standard deviations. The random walk (black bars) had by far the fewest contacts, while the gradient and sampling methods have overlapping error bars. After 5000 navigation decisions, we saw almost no change in either of the host-seeking methods, but the proportion of mosquitoes that found a host during the random walk increased to 0.25. 
+
+%For these particular parameter choices, the gradient method and sampling method show similar results and both are substantially different than a purely random walk. There are sufficient free parameters in our model of host seeking so that behavioral heuristics based on either spatial gradient sensing or temporal sampling can deliver approximately the same results. Since mosquitoes almost certainly navigate using klinotaxis~\cite{Carde1996}, we will use the sampling method in the remainder of this work. However, we emphasize that our observations support the use of the Keller-Segel model of gradient following~\cite{KellerSegel,Hortsmann}.
+
+
+\item{\em 
+In the intro to the "Model Simulations" section, it doesn't seem to make sense to report the fact that mosquitoes found more hosts if given more time as a main finding.
+}
+
+We have reworded this section to account for the referee comment.
+
+\item{\em 
+The derivation and explanation of (8) are unnecessarily cryptic. The authors need to give a clearer explanation of beta (what is meant by "the" host patch) and an interpretation of P0 near (8). It's not OK to let readers search through the model for some clue about P0 before announcing a couple of paragraphs later that "it is [now, maybe] clear" what P0 represents.
+}
+
+We have simplified this derivation (now equation (10)) explaining up front that the starting point of the derivation is
+an expression for the mosquito-host contact rate in the case where both populations are distributed uniformly in the
+entire simulation region (homogeneous mixing).  We present the changes that are required to account for the case
+where the hosts are confined to smaller regions, named ``patches," and propose the new formula for the contact 
+rate that accounts for the changes.  We also present a linearized version of the formula which fits the data well, 
+as shown in Figure 6.  All variables and parameters used in the formula are defined immediately as they are
+presented.  For clarity, we also added a new figure, Figure 1, that shows a schematic of the patches in which the hosts
+are restricted.
+
+
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%
+\begin{center}{\bf Referee \#2}\end{center}
+%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+\item{\em 
+The work is sound, well-organized and well-written. The model tests are clever and the statistics chosen to validate the outputs is intuitive and makes sense. Perhaps the paper is too long in certain parts, which in my opinion may be good to put as Suppl Material. There are very few empirical data on the small scale details of mosquito-host encounter rates, and certainly, as suggested by authors, the outputs of these models could serve as the basis to build-up large-scale models, perhaps more useful in standard epidemiological studies. 
+}
+
+
+In regard to paper length, the test problem section was dramatically shortened.  We also moved one part of the Results to Suppl Materials.
+
+\item{\em 
+I suggest to change the title, given that the word "hybrid model" is a bit confusing. Only in page 14 (Discussion) they give an explanation for it, and it is more a technicality that something that helps to focus the central goal of the paper. I would suggest:
+
+A small-scale model of mosquito-host contact rates 
+
+A mosquito-host encounter rate model: a small-scale spatial approach.
+
+A model for mosquito-host small-scale interactions
+
+or something along these lines.
+}
+
+
+We changed the title to \textbf{A spatial model of mosquito host--seeking behavior}.
+
+\end{enumerate}
+GENERAL ON THE SIMULATIONS
+\begin{enumerate}
+\item{\em 
+Nothing is mentioned on the life span of C02 odour-plumes generated by the hosts. In the simulation odor plumes remain for the entire simulation. What are the temporal scales of the simulations? Could the authors make more explicit also the spatial scales of the system ? Scales of 100 m2 are mentioned in page 12, are all the simulations based on those scales? Could the authors mention that in a more explicit way at the beginning for the reader to be able to know what scales are involved in the modelling from the very beginning??
+}
+
+
+We added dimensional units to Table 1 and the following paragraph at the end of the Odor Plume modeling section: 
+
+In all of the simulations in this paper, we are considering length scales and time frames consistent with the mosquitoes being in close proximity to their targets. The length of a side of the square domain $L$ is 10 m and the simulations cover time periods of 50-500 seconds. The hosts are situated in the middle of the domain, 5 m from the top and bottom domain edges (see Fig. 2B). Initially, the domain is bare of CO$_2$ and it takes about 45 seconds for the plume to develop enough to reach the domain edge. At that point, the mosquitoes are released into the domain, with starting positions that depend on their particular flight behavior.
+
+
+\item{\em 
+Are there periodic boundary conditions? What happens if a mosquito leaves the area? 
+}
+
+
+The odor plume is not periodic; this is now addressed in the modeling section. The mosquitoes are allowed to leave and re-enter the computational domain. See also the response to the next comment.
+
+
+\item{\em 
+It is not clear whether mosquitos are ALWAYS randomly located in the arena. Also it is not clear whether the plume source is at the center of the arena so that some of the mosquitos may be below the plume.
+}
+
+
+Two new figures have been added to clarify. Fig. 1 shows a general schematic of possible host locations in the domain. Fig. 2B shows one of our computational arrangements with examples of mosquito trajectories. These trajectories illustrate the initial positions of the mosquitoes, which are also described in the following paragraph in the section summarizing the mosquito agent behavior:
+
+The odor concentrations are updated by small numerical time steps, and the odor plume is allowed to develop and reach the downwind side of the domain. At this point, the mosquitoes are introduced at random locations in a narrow strip spanning the width of the simulation region near the top or the bottom of the region, depending on the plume finding behavior.  
+For upwind plume finding behavior, the mosquitoes are all released downwind of the hosts;  for downwind and crosswind behaviors, the entry is along the upwind side of the domain. See Fig.~2B for sample mosquito trajectories using each of the three behaviors.
+
+
+
+\item{\em 
+The model is based on "first passage" encounter rates (once a mosquito finds a host it will get sticked to it). The authors just passby through this assumption but they should discuss it more. What are the chances that a mosquito bites several times in the space-time covered by the simulations? Is there any information on that?  How would an N-passage time encounter rate affect their results (for example contact rates per capita linked to host group sizes?
+}
+
+
+We model only a first passage contact rate over a short time scale (up to 500 seconds at most, usually only up to 100-200 seconds). We clarified our assumptions with the statement:
+
+When a mosquito comes within a predetermined radius
+   $r_c$ of a host, the mosquito is removed from the simulation and a ``contact" is recorded. In this
+   context, a contact means an attack on the host, regardless of whether it results in a blood meal, a diversion, or 
+   death.
+
+
+\end{enumerate}
+SPECIFIC
+\begin{enumerate}
+\item{\em 
+Host seeking behaviour:  }
+\begin{enumerate}
+\item{\em 
+I suggest the authors to have a read on the paper 
+Zohar Pasternak, Frederic Bartumeus and Frank W Grasso. J. Phys. A: Math. Theor. 42 (2009) 434010 LŽvy-taxis: a novel search strategy for finding odor plumes in turbulent flow-dominated environments. 
+which may help to introduce/discuss the difference between ranging/homing behaviours and the existence of generalized algorithms to deal with both "plume finding" and "plume tracking". The authors will see also that beyond diffusion there are other "unbiased random walks" that could be assumed for the ranging behaviour of the mosquito.
+}
+
+
+We now reference Pasternak et al (2009) when we discuss random walks and also in the Introduction and Discussion. We changed the terms homing and ranging flight to plume tracking and plume finding as used in this paper.
+
+\item{\em 
+The authors do not provide any rationale to explain why Rg and Rc rules (gradients or local concentration) for chemotaxis gave the same results. Based on chemotaxis literature on model organisms (Bacteria, C.elegans) one would expect  these 2 rules to give different results....(e.g. Pierce-Shimoura et al. 1999, Wei et al. 2011) Could the authors analyze in more detail what are the differences (if any) observed in the simulations based on the 2 rules and why these behaviours do not provide changes in the encounter rates? 
+
+See these papers as examples were local concentration or gradient based chemotaxis are discussed....
+
+Pierce-Shimomura, J. T., T. M. Morse, and S. R. Lockery. 1999. The fundamental role of pirouettes in Caenorhabditis elegans chemotaxis. Journal of Neuroscience 19:9557-9569.
+
+Wei, Y., X. L. Wang, J. F. Liu, I. Nememan, A. H. Singh, H. Weiss, and B. R. Levin. 2011. The population dynamics of bacteria in physically structured habitats and the adaptive virtue of random motility. Proceedings of the National Academy of Sciences of the United States of America 108:4047-4052.
+}
+
+
+In the new Assessment of the Model section, we emphasize that it is the presence of free parameters which gives us the similarity. We now include the following:
+
+Specifically, in this section we examine host--seeking 
+behavior based on sampling the CO$_2$ concentration and comparing it to host--seeking behavior based on
+the CO$_2$ gradient. One might expect that perfect knowledge of the gradient would result in 
+better performance than perfect knowledge of the CO$_2$ concentration.  However, the model 
+includes a window around the gradient direction from where the direction is chosen randomly; in other
+words, the knowledge of the gradient is imperfect.  What we find is that sufficiently imperfect knowledge
+of the gradient direction can result in overall behavior that is comparable to the sampling method (with
+different parameter values).
+
+%\textbf{And later on: } There are sufficient free parameters in our model of host--seeking so that behavioral heuristics based on either spatial gradient sensing or temporal sampling can deliver approximately the same results.
+
+%We do cite the Pierce-Shimomura et al. paper because the term ``orthokinesis'' is useful. Wei et al. was not sufficiently relevant to cite in our opinion.
+
+\end{enumerate}
+\item{\em 
+Distribution of hosts:
+
+The result that per capita predator contact rates decrease as prey groups enlarge it is well-known in ecology as the "dilution effect", and thought to be one of the explanations of prey grouping. The authors could comment on that. The "mechanism" generating the dilution effect is the fact that the encounter is mediated by odor-plumes, and the latter do not increase linearly with group size.  
+
+Turner, G. F. \& Pitcher, T. J. 1986 Attack abatement: a model for group protection by combined avoidance and dilution. Am. Nat. 128, 228-240. (doi:10.1086/284556)
+
+Krause, J. \& Ruxton, G. D. 2002 Living in groups. Oxford, UK: Oxford University Press.
+}
+
+We included appropriate references to the dilution effect in the discussion and in the section on the distribution of hosts, specifically citing Turner and Pitcher (1986). %We state that our results indicate that it is advantageous for birds to roost together in larger groups on this spatial scale, because on average they will receive fewer bites. This phenomenon of attack abatement is well-known in the literature on predator-prey interactions~\cite{Turner1986}, and likely has two causes in the situation that we consider. First, the odor plume exuded by a group does not grow linearly with the number of hosts, because the hosts are clustered together. This leads to fewer mosquitoes locating the group than would find the same number of well-spaced individuals (an avoidance effect). Secondly, the mosquitoes only need a fixed amount of blood, and so they will not attack more individuals simply because they are available -- one host is all they require. This is a dilution effect.
+
+
+\end{enumerate}
+
+
+
+
+%%%%%%%%%%%%%%%%%
+\begin{center}{\bf Referee \#3}\end{center}
+%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+\item{\em 
+I have paid specific attention to the biology and the biological motivation of the hybrid model as developed by Cummins and others. Overall, I found that they have incorporated many relevant aspects of the biology of the mosquito, in this case the Southern house mosquito Culex quinquefasciatus, a vector of West Nile virus (WNV). Various components of the enzootic part of the transmission cycle (i.e. mosquito-bird encounters) are taken well care of. As expected, the model predicts that the roosting behavior and thus the spatial arrangement of birds has a great impact on the likelihood of mosquito-host encounters. At the same moment, this also presents a limitation of the model: it does not (yet) consider the likelihood of encounters between mosquitoes and humans. In other words, the virus can perfectly circulate among birds without affecting/causing disease in humans. At this stage, the model is thus of interest from a more fundamental (academic) point of view.
+
+Incorporating the role of bridge vectors, i.e. those mosquitoes that need to encounter birds as well as humans, will make the model of more epidemiological relevance. I think such a discussion should be included in the Future Directions section of the paper. The statement that "... there is virtually no limit to further levels of complexity..." is bit short-sighted in that regard.
+}
+
+
+We changed the ``virtually no limit" sentence to:  This modeling framework is capable of accommodating many further levels of complexity, such as gusting wind, moving hosts, multiple host types, odor-baited traps, variable breathing rate, compound odors, repellents, etc.
+
+\item{\em 
+The focus in the model is on CO2 as the major 'odor' involved in the host-seeking process. The authors acknowledge that many other compounds play a role as well. As these compounds are numerous and of different volatility, they probably all have their own typical way of being dispersed by wind. Unfortunately, I did not read any discussion on this limitation of the model in the Discussion section.
+}
+
+
+When describing the model, we now state: Hosts emit a single gaseous compound that attracts mosquitoes, is carried (convected) by wind,
+and diffuses in the air. For the purpose of this paper, we assume that the attractant is CO$_2$. However, another chemical with a different diffusion coefficient could easily replace CO$_2$.
+
+We also state in the discussion that compound odors are a future extension of this work.
+
+
+\item{\em 
+Besides the "... potential interest to experimental and computational epidemiologists", I think there may also be an interest from a mosquito control point of view. Many mosquito traps, such as e.g. the Mosquito Magnet, depend on CO2 as the main source of attraction for mosquitoes. The location where a single trap is placed and the spatial arrangement of multiple traps can greatly affect the catch numbers. From a monitoring perspective, but also from a control perspective (mass trapping) this is of great relevance. The developed model can probably shed led on questions such as where and when (in relation to climatic conditions) to place CO2 -baited traps. Maybe the authors can elaborate on this. 
+}
+
+We appreciate this comment.  The Future Directions section contains the following paragraph:
+
+From the point of view of controlling the vector population, the model presented here may offer some insights into how the spatial distribution of mosquito traps may affect the overall control.  This can be accomplished by replacing the hosts in the model with odor-baited mosquito traps and adjusting appropriate parameters.  This was addressed in a non-spatial model by Okumu et al.~[Okumu, 2010], where homogenous mixing of hosts was assumed.  They discuss the importance of space in the vector-host encounter process and indicate that the rate at which an individual host is encountered by an individual vector depends on the distance between hosts and vectors as well as on the size of the odor plumes generated by the hosts.  Further, spatial characteristics such as the topography and wind direction are known to be influential in the rates at which individual hosts are encountered.  Our model, which can include spatial features explicitly, can be used to compare strategies of where to place mosquito traps relative to blood-source hosts.
+According to the studies in~[Gillies and Wilkes, 1972] the distances at which various species of mosquitoes responded to CO$_2$ baits by initiating orientation toward the them was 30 meters or less. Therefore, the model length scales presented here are appropriate for such simulations.
+
+
+
+
+\end{enumerate}
+
+
+
+
+%%%%%%%%%%%%%%%%%
+\begin{center}{\bf Referee \#4}\end{center}
+%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+\item{\em 
+In the abstract, the sentence "We model several proposed strategies for odor-tracking to locate a host in the absence of wind and quantify their relative effectiveness." seems incompatible with subsequent statements indicating that mosquitoes across the wind. Should this be corrected to "in the presence of" or "the presence or absence of"? Also, would the term "aggregated" or "clustered" as used in ecological statistics be clearer to the biological/epidemiological target audience than "less densely distributed"?
+}
+
+
+The abstract was edited to account for these comments.
+
+\item{\em 
+The author summary is very vague, non-committal and lacking in new insight. Simply saying that host spatial distribution is important is hardly novel and this summary does not convey in which way it is important. I preferred the way the abstract itself actually makes concrete statements and liked the style of the bullet point result summaries on page 11.
+}
+
+
+The new Author Summary reads: 
+
+Mosquito-borne diseases can spread when a mosquito bites a vertebrate host to obtain a blood meal for egg-laying.  The first step in the transmission process consists of the mosquitoes seeking and finding a host.  Mosquitoes use the wind direction and odors, such as carbon dioxide, emitted by the hosts in order to locate a host to bite.  We present a spatial computational model of the host-seeking process in a region where hosts are heterogeneously distributed in clusters.  The model is used to analyze the success in finding hosts once the mosquitoes are close to the host.  
+We show that the number of mosquito--host contacts increases as hosts become more widely spaced within their clusters; that mosquito flight perpendicular to the wind leads to greater success in locating a host; and that the number of bites per host decreases when hosts aggregate into larger clusters. We suggest a way to incorporate our findings into more general and larger scale models of mosquito-borne disease transmission.
+
+\item{\em 
+Unfortunately, the bottom line results presented in the bullet points on page 11 are misleading and inaccurate in my opinion because the assumed starting parameters for spatial scales over which homing and ranging flight processes occur are quite misrepresentative. If one were to accept these conclusions at face value, one would have to accept that navigation within plumes is a major limiting step for successful host attack, which does not appear to be the case in nature. The sections in pages 11 and 12 describing the size of the domain and patches are unrealistically small and dense patch sizes of only 1 foot and a domain size of only 10 meters. Although probably smaller for smaller hosts such as birds, mosquitoes encounter odor plumes for cattle and humans from at least 20-30 meters and engage in correspondingly long homing flights[1-3] and often cover distances of several kilometers [4, 5] during ranging flight. I can't imagine that the authors were unaware of this so
+I would suggest that rather than gloss over these biological realities, they use what otherwise looks like an excellent model to address some of these really critical processes on scales that really matter and are representative of real world issues in vector biology. For example, the clustering of human beings across landscapes must be of enormous significance: does an entire village have a single odor plume and, if so, does that make us easier to find. Perhaps an even more interesting, practical and controversial subject this models could address in this or subsequent papers is the overlap between the plumes of attractive odors and vapor-phase repellents which can protect the user but may also direct them to vulnerable non-users[6-9]. For birds, I'm sure that aggregation, particularly when roosting at night is the rule rather than the exception and what is the significance of large roosting colonies for mosquito survival and pathogen propogation? However, to meaningfully
+address such epidemiologically relevant questions, this model will have to be implemented on spatial scales that matter in reality and the manuscript would need to be much more biologist-friendly to make these results useful to a broad, relevant audience and to make it transparent enough for critical review.  
+}
+
+We have been motivated by a specific set of experiments conducted with small groups of chickens [Foppa et al (2011) in press]. For these experiments, the length and time scales that we use for the host-seeking process are reasonable. Additionally, although some mosquitoes may intercept cattle and human plumes from 30 meters away, some will intercept the plumes at closer ranges. Having said that, there is nothing in the model that prevents its use at much larger spatial scales, and we state this as a future direction in the Discussion. 
+
+Additionally, we include in the Introduction a summary of other models that incorporate aspects of host--seeking behavior over various length and time scales to put our contribution into its appropriate context. The new papers cited in this regard are Pasternak et al (2009), Okumu et al (2010), Killeen and Smith (2007), Killeen et al (2007), and Le Menach et al (2007).
+
+
+
+\item{\em 
+For such a mathematically comprehensive manuscript, this paper seems to take little advantage of the extensive biological literature out there which I would prefer to see reviewed in an informative, representative way. Could I suggest inclusion of one or more behavioral biologists as co-authors to complement the inputs of the mathematicians and epidemiologist?
+}
+
+We studied the papers suggested by this referee and expanded the biological information in the introduction. The following newly cited papers all informed the biology or biological terminology in our manuscript: Foppa et al (2011), Pasternak et al (2009), Okumu et al (2010), Service (1980), Dekker and Carde (2011), Pierce-Shimomura et al (1999), Turner and Pitcher (1986), and Gillies and Wilkes (1972). 
+
+\item{\em 
+Also, the language and presentation is very much geared up for the mathematician rather than the biologist. The excessively methodological perspective of the authors is reflected in the fact that the mathematical methods overspill into the results section. I consider myself a reasonably competent modeler of mosquito-borne diseases yet I really struggled, and in many cases failed, to really get to the bottom of the assumptions and particularly the parameter settings and justifications which underpin the simulations. No units are presented for most of the parameters described, making it essentially impossible to evaluate whether they are realistic or not. 
+}
+
+
+We substantially reorganized the manuscript to improve its readability, and we carefully reworked the mathematical arguments to make them more transparent to non-mathematicians. Particularly, we removed mathematical material that is (in hindsight) not specifically needed in this presentation. We removed one of the figures in the final results section, because it required additional mathematical explanation of a numerical fit that (while interesting) is not a major result. We include it in Supplemental Material. We also removed the general response function $F$ controlled by a concavity parameter $\kappa$, because we only use the piecewise linear version in this paper. We reduced the ``analysis of host seeking rules" section from 2 pages to about 1/2 a page, used a test case that is more like those in the rest of the paper, and removed the discussion of the KS statistic, since it is not required to make our point. We moved this section and the sensitivity analysis section to the Model/Methods section to better separate the math from the results. We also moved the mathematical explanation of the meandering odor plume from the Results to the Model/Methods section. We simplified and clarified the mathematical connection between our work and compartmental models in the discussion. We added dimensional values of the parameters throughout the text and especially in Table 1. 
+
+\item{\em 
+The assumptions about mosquito foraging behavior are sensible and firmly grounded in field observations but the identity of terms like "ranging flight" and "homing flight" with the commonly used behavioral terms "kinesis" and "taxis", as well as previous models of mosquito behavior which make identical assumption and use these concepts and terminology should be described so that the curious reader can make sense and use of the broader literature. It would also be important to harmonize your terminology with that of other models in which the term "encounter" refers to the first detection of the odor plume rather than the actual host attack.[10]
+}
+
+We added the terms tropotaxis and klinotaxis to refer to the different types of host-seeking. Also, kinesis, orthokinesis, anemotaxis, plume-finding, and plume-tracking were all associated with the appropriate behaviors in the paper. In fact, we replaced the terms homing and ranging flight with plume tracking and plume finding behavior throughout the paper as in Pasternak et al (2009). We replaced all instances of ``encounter"  with ``contact" wherever it referred to interaction between a vector and a host. We now use ``encounter" strictly when mosquitoes intercept the odor plume.
+
+\item{\em 
+The role of CO2 in plumes is overemphasized. The fact that mosquitoes get their host preferences confused at short range when two alternatives are presented beside each other suggests that the long-range cues which trigger initiation homing flight are very host-specific and that general cues such as heat, moisture and CO2 are more important for short range stimulus of feeding itself. [11-14]
+}
+
+See also referee \#3 comment 2.  What we call CO$_2$ should be interpreted as a relevant attractant. The limitation is that there is only one in the model as presented.  The interactions between two or more is a future direction.
+
+
+\item{\em 
+In the author summary, I'm not sure that the word "mated" in the first sentence is necessarily required or always accurate for mosquitoes which transmit transovarially contagious arboviruses and which sometime feed before mating rather than vice versa.
+}
+
+See referee \#4 comment 2. The author summary has been rewritten, taking this into account.
+
+{\em References
+
+1.	Gillies MT, Wilkes TJ: A comparison of the range of attraction of animal baits for some West African mosquitoes. Bull Entomol Res 1969, 59:441-456.
+
+2.	Gillies MT, Wilkes TJ: The range of attraction of single baits for some West African mosquitoes. Bull Entomol Res 1970, 60:225-235.
+
+3.	Gillies MT, Wilkes TJ: The range of attraction of animal baits and carbon dioxide for mosquitoes. Studies in a freshwater area of West Africa. Bull Entomol Res 1972, 61:389-404.
+
+4.	Service MW: Effects of wind on the behaviour and distribution of mosquitoes and blackflies. International Journal of Biometeorology 1980, 24(4):347-353.
+
+5.	Service MW: Mosquito (Diptera: Culicidae) dispersal-the long and short of it. J Med Entomol 1997, 34(6):579-588.
+
+6.	Killeen GF, Chitnis N, Moore SJ, Okumu FO: Target product profile choices for intra-domiciliary malaria vector control pesticide products: repel or kill? Malar J 2011, 10:207.
+
+7.	Killeen GF, Smith TA: Exploring the contributions of bednets, cattle, insecticides and excito-repellency to malaria control: A deterministic model of mosquito host-seeking behaviour and mortality. Trans R Soc Trop Med Hyg 2007, 101:867-880.
+
+8.	Muirhead-Thomson RC: The significance of irritability, behaviouristic avoidance and allied phenomena in malaria eradication. Bull World Health Organ 1960, 22:721-734.
+
+9.	Pates H, Curtis C: Mosquito behavior and vector control. Annu Rev Entomol 2005, 50:53-70.
+
+10.	Okumu FO, Moore SJ, Govella NJ, Chitnis N, Killeen GF: Potential benefits, limitations and target product-profiles of odor-baited mosquito traps as a means of malaria control. PLoS One 2010, 5:e11573.
+
+11.	Bouma M, Rowland M: Failure of passive zooprophylaxis: cattle ownership in Pakistan is associated with a higher malaria prevalence. Trans Roy Soc Trop Med Hyg 1995, 89:351-353.
+
+12.	Schultz GW: Animal influence on man-biting rates at a malarious site in Palawan, Phillipines. Southeast Asian J Trop Med Pub Hlth 1989, 20(1):49-53.
+
+13.	Hewitt S, Kamal M, Muhammad N, Rowland M: An entomological investigation of the likely impact of cattle ownership on malaria in an Afghan refugee camp in the North West Frontier Province of Pakistan. Med Vet Entomol 1994, 8:160-164.
+
+14.	Okumu FO, Killeen GF, Ogoma SB, Biswaro L, Smallegange RC, Mbeyela E, Titus E, Munk C, Ngonyani H, Takken W, Mshinda H, Mukabana WR, Moore SJ: Development and field evaluation of a mosquito lure that is more attractive than humans. PLoS One 2010, 5:e8591.}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{document}

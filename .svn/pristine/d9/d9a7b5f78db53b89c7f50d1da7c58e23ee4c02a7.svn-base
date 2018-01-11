@@ -1,0 +1,96 @@
+% BatchChickenJuice.m
+
+clear
+close all
+
+% SAVE FILES IN THE FOLLOWING FOLDER
+basedir = '~/WNVFullBatchRuns/ChangingNumHostsAverageChickPos/';
+
+% MAKE SURE INITIAL CHOICES ARE THE SAME 
+SetRandomSeed(418);
+
+% CHOOSE THE NUMBER OF SIMULATIONS
+numsims = 15; %number of simulations to run for each ensemble
+
+% % STRUCTURE FOR SAVING CHICKEN POSITIONS
+% chickpos_xc=cell(0);
+% chickpos_yc=cell(0);
+
+for k = 1:5;
+	Nc = [10-k, k];
+	% xcmat = [];
+	% ycmat = [];
+	for l = 1:10;
+		[p,xm0,tm0,mem0,xc,yc] = BatchinitParams(Nc);
+		% xcmat[:,l] = xc; %save chicken positions for no source runs
+		% ycmat[:,l] = yc; %save chicken positions for no source runs
+		if k == 1 && l == 1;
+			r1 = p.Vmag*p.randratio*(p.randmean + p.randstddev*randn(p.Ng,p.Ng,ceil(p.Tf/p.tRand)+1));  
+			r2 = p.Vmag*p.randratio*(p.randmean + p.randstddev*randn(p.Ng,p.Ng,ceil(p.Tf/p.tRand)+1));
+		end
+	
+		for windmode = [1,2,5];
+			% BLANK STRUCTURE FOR SAVING OUTPUT	
+			alloutput = struct();
+
+		    % RANDOM SEED FOR MOSQUITO BEHAVIOR
+			SetRandomSeed(0);
+
+		    % SET REMAINING PARAMETERS IN A SCRIPT
+		    [p,ym0] = BatchsetParams(p,windmode,basedir,k,l); 
+
+			for snum = 1:numsims;
+		        % NOTIFY USER WHICH RUN
+				disp([WindName(windmode),' simulation ',int2str(snum),' of ',int2str(numsims),', host distribution ',int2str(k),' of 5, iteration ',int2str(l),' of 10.'])
+
+				% RUN THE SIMULATION
+			    [ xm, ym, results ] = BatchChickenGuts( p, xm0, ym0, tm0, mem0, xc, yc, r1, r2 );
+				eval(['alloutput.xm',sprintf('%02d',snum),'=xm;']);
+				eval(['alloutput.ym',sprintf('%02d',snum),'=ym;']);
+				eval(['alloutput.results',sprintf('%02d',snum),'=results;']);
+			
+		    end %for loop
+		
+			% SAVE THE INPUTS AND OUTPUTS
+		    save(p.savefname, 'p', 'xc', 'yc', 'alloutput')    
+		end 
+	end
+	% chickpos_xc{k} = xcmat; %save chicken positions for no source runs
+	% chickpos_yc{k} = ycmat; %save chicken positions for no source runs
+end
+
+% % Test null hypothesis with no CO2
+% for k = 1:5;
+% 	Nc = [10-k, k];
+% 	[p,xm0,tm0,mem0,xc,yc] = BatchinitParams(Nc,0);
+% 	xc = eval(['chickpos.xc',int2str(k)]);  %use the same chicken positions as before
+% 	yc = eval(['chickpos.yc',int2str(k)]);
+% 	
+% 	for windmode = [1,2,5];
+% 		% BLANK STRUCTURE FOR SAVING OUTPUT	
+% 		alloutput = struct();
+% 
+% 	    % RANDOM SEED FOR MOSQUITO BEHAVIOR
+% 		SetRandomSeed(0);
+% 
+% 	    % SET REMAINING PARAMETERS IN A SCRIPT
+% 	    [p,ym0] = BatchsetParams(p,windmode,basedir,snum); 
+% 		p.savefname = fullfile(basedir,[WindName(windmode),int2str(k),'_noCO2.mat']);   
+% 
+% 		for snum = 1:numsims;
+% 	        % NOTIFY USER WHICH RUN
+% 			disp([WindName(windmode),' simulation ',int2str(snum),' of ',int2str(numsims),', host distribution ',int2str(k),' of ',int2str(5),', no CO2.'])
+% 
+% 			% RUN THE SIMULATION
+% 		    [ xm, ym, results ] = BatchChickenGuts( p, xm0, ym0, tm0, mem0, xc, yc, r1, r2 );
+% 			eval(['alloutput.xm',sprintf('%02d',snum),'=xm;']);
+% 			eval(['alloutput.ym',sprintf('%02d',snum),'=ym;']);
+% 			eval(['alloutput.results',sprintf('%02d',snum),'=results;']);
+% 	
+% 	    end %for loop
+% 		
+% 		% SAVE THE INPUTS AND OUTPUTS
+% 	    save(p.savefname, 'p', 'xc', 'yc', 'alloutput')    
+% 	end 
+% end
+

@@ -1,0 +1,16 @@
+Please find the enclosed manuscript titled "A hybrid model of mosquito-host
+encounter rates" being submitted for consideration of publication in PLoS
+Computational Biology.
+
+The manuscript describes a spatial hybrid numerical model of interactions
+between mosquitoes and roosting birds that accounts for various mosquito
+behavioral rules described in the literature, wind velocity, and chemical
+cues emitted by hosts which are carried by the wind and diffused in the air.
+We provide a unique contribution to the field of computational epidemiology
+by combining chemotaxis and advection with an agent-based model.  The
+manuscript also makes a connection between our spatial local model and other
+popular continuum models.
+
+Thank you for consideration of our manuscript.
+
+Bree Cummins, Ricardo Cortez, Ivo Foppa, James Hyman, and Justin Walbeck

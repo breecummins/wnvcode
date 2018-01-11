@@ -1,0 +1,16 @@
+ChickenResults.mat Explanation
+------------------------------
+
+ChickenResults contains the data gathered from ChickenBatch, and is a preliminary test of ExploreChickenPosition and the chicken distributions generated. The file contains two 3D arrays, ind_results and t_results. These two arrays tabulate data on mosquito/host interactions, and record both which chicken was found by any mosquito and at what time that occured.
+
+The two arrays measure 200x4x160. The first index references an individual mosquito within a given simulation. Because a certain number of mosquitoes will not find a host in a given simulation, the data in these arrays is sorted so that the actual results are grouped at the beginning, with a set of trailing zeros cooresponding to the mosquitoes that didn't find hosts.
+
+The second index references different wind-derived behaviors (upwind, downwind, etc.) for a given chicken distribution. When these simulations were run, each of these behaviors was run simultaneously over the CO2 grid derived from a given chicken distribution. The different behaviors and their cooresponding indices in the arrays are below.
+
+1 = Upwind Movement
+2 = Downwind Movement
+3 = Crosswind Movement with Upwind Bias
+4 = Crosswind Movement with Downwind Bias
+
+
+The third and final index references which chicken distribution is being used for a particular simulation. This value is described in the file "ChickenLocs Explanation" and the value of the index here cooresponds to the table in that file as well.

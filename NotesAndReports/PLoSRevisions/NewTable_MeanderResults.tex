@@ -1,0 +1,93 @@
+\documentclass[10pt]{article}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{graphicx,multirow}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+\usepackage{color}
+
+% Use doublespacing - comment out for single spacing
+%\usepackage{setspace}
+%\doublespacing
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+
+% Use the PLoS provided bibtex style
+\bibliographystyle{plos2009}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+%% ** EDIT HERE **
+
+
+%% ** EDIT HERE **
+%% PLEASE INCLUDE ALL MACROS BELOW
+% Comments for making sure we touch all the bases for a good paper
+\newif\ifcommentsw
+\commentswtrue
+\newcommand{\comment}[1]{\ifcommentsw  $\blacktriangleright$\ \textbf{#1}\ $\blacktriangleleft$ \fi}
+%\commentswfalse   % remove the % to remove informational comments
+
+
+% Notes on the paper for communicating with coauthors
+\newif\ifnotesw
+\noteswtrue
+\newcommand{\notes}[1]{\ifnotesw  $\bullet$\ \textit{ \textbf{#1}}\ $\bullet$ \fi}
+%\noteswfalse   % remove the % to remove notes to coauthors
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\def\cq{{\emph{Culex quinquefasciatus}}}
+
+%% END MACROS SECTION
+
+\begin{document}
+
+\begin{table}[!ht]
+\caption{{\bf A comparison of ranging behaviors in straight and meandering plumes.} The third and fourth columns, $P$ and std dev, are the average and standard deviation of the proportion of mosquitoes finding a host taken over 15 simulations of the same plumes with stochastic mosquito behavior. Each simulation is sufficiently long to ensure that all the mosquitoes either find a host or leave the domain. The ``$T_{avg}$'' column is the average number of navigation decisions a mosquito makes before finding a host (average taken over all simulations). The associated standard deviation taken over the \emph{means} of the simulations. The final column recalculates $P$ assuming that the simulation halts after 350 mosquito decisions.}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			Ranging behavior & plume type &$ \quad P \quad $& std dev & $T_{avg}$ & std dev & truncated $P$\\
+			\hline
+			\multirow{2}{*}{upwind} & straight &22\% & 1.7\% & 116 & 5 & 22\%\\
+										&  meander & 38\% & 2.5\% & 159 & 4 & 38\%\\
+										\hline
+			\multirow{2}{*}{downwind} & straight &20\% & 1.8\% & 46 & 9 & 20\%\\
+										&  meander & 39\% & 1.9\% & 97 & 6 & 38\%\\
+										\hline
+			\multirow{2}{*}{crosswind} & straight &35\% & 3.5\% & 285 & 14 & 27\%\\
+										&  meander & 57\% & 4.2\% & 569 & 20 & 14\%\\
+			\hline
+		\end{tabular}
+		\label{tab:meander}
+	\end{center}
+\end{table}
+		
+	\end{document}

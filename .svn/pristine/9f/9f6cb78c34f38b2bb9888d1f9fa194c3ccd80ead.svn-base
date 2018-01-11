@@ -1,0 +1,72 @@
+*With all LaTeX submissions, we ask authors to please ensure they include in the "$" environment all portions of an equation, and any superscripts or subscripts also include the base number/text. In order to ensure the correct rendering of your equations in the XML, anything within the "$" environment is rendered as a graphic. In order to decrease the chance for incorrect display in the XML, please include all relevant text within the "$" signs.
+Incorrect: 4$\mu$ s cm$^{-1}$ -> May render as: 4盜 cm-1
+Correct: $4\mu\mathrm{ s cm}^{-1}$
+Please pay special attention items like: Na${}^{+}$. This should be changed to "$\mathrm{Na}^+$ or else the "+" won't appear as superscript in the HTML version.
+Once you've made your changes to the LaTeX version of your manuscript, please upload your revised PDF, .tex files, bibliography file (.bib or .bbl) and formatting information. For more information and downloadable templates, please see: http://www.ploscompbiol.org/static/latexGuidelines.action
+
+(Done. I used \mbox instead of \mathrm because \mathrm does not respect white space.)
+
+
+*Please reorganize/condense your headings to a maximum of three heading levels.
+
+(I didn't see anything to fix here. We already have only three heading levels - section, subsection, and subsubsection.)
+
+
+*Please use consistent wording when referring to your figures (e.g., "Figure 1" or "Fig. 1" or "fig 1").
+
+(One instance of Figure replaced with Fig.)
+
+
+*Please change the number format of the references list from bracketed, [21], to open with a period, 21. . In your .tex file, include the following in your header:
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+(Done. Also corrected errors in citations.)
+
+
+* NB: Your Author Contributions will be typeset as follows. Please contact us if any changes are necessary.
+Conceived and designed the experiments: BC RC IMF JW JMH
+Performed the experiments: BC RC JW
+Analyzed the data: BC RC IMF JW JMH
+Contributed reagents/materials/analysis tools: BC RC IMF JW JMH
+Wrote the paper: BC RC IMF JMH
+Wrote the software used for the simulations: BC RC JW
+
+(OK.)
+
+* NB: Your financial disclosure will be typeset as follows. Please contact us if any changes are necessary:
+This project was partially funded by a Tulane Research Enhancement Phase 2 Grant (www.tulane.edu) and an NIH/NIGMS grant in the Models of Infectious Disease Agent Study (MIDAS) program, #1U01GM097661-01 (http://www.nigms.nih.gov/Research/FeaturedPrograms/MIDAS/). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.
+
+(OK.)
+
+* Please be aware that tables must be in strict grid format, with only one grid per table, and not tables with multiple parts. An example of a published table can be found here: http://www.ploscompbiol.org/article/slideshow.action?uri=info:doi/10.1371/journal.pcbi.1002039&imageURI=info:doi/10.1371/journal.pcbi.1002039.t001. Please note that merged cells or vertical dividing lines cannot be accommodated.
+
+(Done. Significant reworking of Table 1 required, including a minor reworking of text to accommodate two new variable names (alpha hat's).)
+
+
+*Figures with multiple parts (A, B, C etc) should be uploaded as a single file, and all figures must be less than 10MB. You may find it helpful to consult our guidelines on compressing figures here: http://www.ploscompbiol.org/static/figureGuidelines.action
+
+(Done. See next comment also.)
+
+
+* As part of our efforts to improve published figure quality, we recommend that you size your figures to fit one of three widths; 8.3cm, 12.35cm, or 17.35cm wide (maximum figure height is 23.35 cm), as detailed in our Figure Guidelines at http://www.ploscompbiol.org/static/figureGuidelines.action#quickref.
+If you are submitting TIFFs, you must submit them in 8-bit RGB and save using LZW compression (http://www.ploscompbiol.org/static/figureGuidelines.action#lzw) in order to reduce file size.
+
+Each Figure, including all its parts/panels, must be uploaded as a single, one-page EPS or TIFF (at 300 pixels/inch), and less than 17.35cm wide, and less than 23.35cm in height.
+
+Figures 1-6 have been submitted in a file format which we do not accept for Figure files (.pdf). Please provide us with Figures in either a high resolution TIFF or EPS format (http://www.ploscompbiol.org/static/figureGuidelines.action#tiff).
+
+Figures 7A and 7B are low resolution (150 pixels/inch), and we cannot accept your Figures as is. Please carefully review the PLoS Figure Guidelines and provide Figures that were originally created at a high resolution of 300 pixels/inch and less than 17.35cm wide and less than 23.35cm tall. Text and graphics should appear clear and crisp with no pixelated or blurred edges when zoomed in (http://www.ploscompbiol.org/static/figureGuidelines.action#howto). Make sure to save your TIFF files with LZW Compression turned on (http://www.ploscompbiol.org/static/figureGuidelines.action#lzw).
+
+If you are submitting TIFFs, please submit them in RGB and save using LZW compression (http://www.ploscompbiol.org/static/figureGuidelines.action#lzw) in order to reduce file size.
+
+For further instructions to assist with your Figure revisions, please refer to our Figure Guidelines at: http://www.ploscompbiol.org/static/figureGuidelines.action
+
+If you need assistance, please contact us directly at figures@plos.org so we can further help with this matter. Please send any relevant source files and tell us what application(s) and what operating system you are using.
+
+(Done. Figure 2A,B was split into two separate figures, while the two parts of figures 4 and 7 were combined. Figure files were renamed to match the new order, and now go from 1 to 8.)
+
+
+Before you return the corrected DOC or RTF version of your manuscript addressing the items mentioned above, it is important that you carefully review it and the related files to ensure they comply with essential formatting and manuscript preparation requirements including grammar, punctuation, and spelling, as well as scientific content, gene nomenclature consistency, working URLs, and spelling out abbreviations on first mention. Please also check that each Supporting Information file opens correctly.

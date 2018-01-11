@@ -1,0 +1,76 @@
+MLabMatrix
+----------
+
+MLabMatrix(int,int) --  good
+MLabMatrix(int,int,float) -- good  
+MLabMatrix(copy const.) --  good
+~MLabMatrix() -- good
+transpose -- good
+length -- good
+size --  good
+
+
+MLabMatrix operators
+--------------------
+
+Assignment operator -- good
++= operator, MLabMatrix -- good
+-= operator, MLabMatrix -- good
+*= operator, MLabMatrix -- good
++= operator, float -- good
+-= operator, float -- good
+*= operator, float -- good
+/= operator, float -- good
++ operator, Matrix&float -- good
+- operator, Matrix&float -- good
+* operator, Matrix -- good
+* operator, float -- good
+/ operator, float -- good
+== operator, Matrix -- good
+!= operator, Matrix -- good
+<= operator, Matrix -- good
+>= operator, Matrix -- good
+< operator, Matrix -- good
+> operator, Matrix -- good
+== operator, float -- good
+!= operator, float -- good
+<= operator, float -- good
+>= operator, float -- good
+< operator, float -- good
+> operator, float -- good
+2D indexing operator -- good
+1D indexing operator -- good
+
+-----------------------------------
+
+zeros(int i, int j) -- good 
+ones(int i, int j) --  good
+min(MLabMatrix a) --  good
+min2(MLabMatrix a) -- good
+max(MLabMatrix a) -- good
+max2(MLabMatrix a) -- good
+find(MLabMatrix a) -- good
+m_atan2(MLabMatrix a, MLabMatrix b) --
+ismember(MLabMatrix a, MLabMatrix s) -- good
+m_not(MLabMatrix a) -- good
+unique(MLabMatrix a) -- 
+all(MLabMatrix a) -- 
+abs(MLabMatrix a) -- good
+rand_m(int i, int j) --
+randn_m(int i, int j) --
+meshgrid(MLabMatrix x, MLabMatrix y) -- good
+sort(MLabMatrix) -- good
+
+------------------------------------------
+
+- Random Notes -
+
+Exception handling does not work on Windows. It looks like the Managed frameworks are interfering with the regular C++ exception handling functionality. Have yet to test it on a Linux distro.
+
+Most of the MLabUtil functions have been tested on toy problems. There's a problem with the way unique works and all is not behaving according to the Matlab function. Other than that it looks good.
+
+Need to do some tests to make sure the random number generators are working.
+
+Matrix subindexing is working well, but the syntax turned out a bit clunkier than I was hoping. May refactor at some point.
+
+Normally distributed RNG implemented with Box-Muller algorithm. Check for proper implementation with toy problem eventually.

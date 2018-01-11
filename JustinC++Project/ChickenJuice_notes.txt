@@ -1,0 +1,5 @@
+Continuous portion of model is written but untested.
+
+Really getting to the point where not having Matlab's visualization capabilities is becoming a hinderance, since spot-checking a 125x125 numerical printout of a matrix isn't particularly revealing.
+
+Look into figuring out a way to make system calls at runtime, and exporting data to a file to draw with gnuplot.
